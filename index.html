@@ -1,18 +1,64 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Notes App</title>
-  </head>
-  <body>
-    <div class="app-wrapper">
-      <header>
-        <h1>Notes</h1>
-      </header>
-      <section></section>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Notes App</title>
+</head>
+
+<body>
+  <div class="app-wrapper">
+    <header>
+      <h1>Notes</h1>
+    </header>
+    <div id="container-input">
+      <input id="search" type="search" placeholder="🔍 Search notes..." />
     </div>
-  </body>
-  <script src="function.js"></script>
+    <div id="container-list"> <!--Dapat click dapat makikita yung buong text at my etc pa-->
+      <h3>Lorem Ipsum</h3></br>
+      <p id="note-paragraph">Is simply dummy text of the printing and
+        typesetting industry. Lorem Ipsum has been the industry's standard
+        dummy text ever since the 1500s, when an unknown printer took a galley
+        of type and scrambled it to make a type specimen book. It has survived
+        not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with
+        the release of Letraset sheets containing Lorem Ipsum passages, and
+        more recently with desktop publishing software like Aldus PageMaker
+        including versions of Lorem Ipsum.</p><br />
+      <p id="note-time">YESTERDAY</p><br />
+      <hr />
+    </div>
+    <div id="container-button">
+      <button id="addButton">+</button>
+    </div>
+  </div>
+
+  <!-- add modal  -->
+  <div id="editModal" class="modal">
+    <div id="modal-content">
+      <div id="edit-title">
+        <h2>Add Note</h2>
+      </div>
+      <div class="input-container">
+        <div class="task-name">Title</div>
+        <div>
+          <input name="task" id="modal-input" type="text" placeholder="Note title..." />
+        </div>
+      </div><br />
+      <div class="input-container">
+        <div class="task-name">Note</div>
+        <textarea id="textArea" rows="13" cols="38" placeholder="Start typing your thoughts...">
+        </textarea>
+      </div>
+      <div id="modal-button">
+        <button id="saveEdit">Save Changes</button>
+        <button id="cancelEdit">Cancel</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="function.js"></script>
+
 </html>
