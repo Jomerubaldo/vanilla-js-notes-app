@@ -13,12 +13,12 @@
     <header>
       <h1>Notes</h1>
     </header>
-    <div id="container-input">
-      <input id="search" type="search" placeholder="🔍 Search notes..." />
+    <div class="container-input">
+      <input class="search" type="search" placeholder="🔍 Search notes..." />
     </div>
-    <div id="container-list"> <!--Dapat click dapat makikita yung buong text at my etc pa-->
-      <h3>Lorem Ipsum</h3></br>
-      <p id="note-paragraph">Is simply dummy text of the printing and
+    <div class="container-list"> <!--Dapat click dapat makikita yung buong text at my etc pa-->
+      <h3 id="noteTitle" class="note-title">Lorem Ipsum</h3></br>
+      <p id="noteParagraph" class="note-paragraph">Is simply dummy text of the printing and
         typesetting industry. Lorem Ipsum has been the industry's standard
         dummy text ever since the 1500s, when an unknown printer took a galley
         of type and scrambled it to make a type specimen book. It has survived
@@ -27,34 +27,34 @@
         the release of Letraset sheets containing Lorem Ipsum passages, and
         more recently with desktop publishing software like Aldus PageMaker
         including versions of Lorem Ipsum.</p><br />
-      <p id="note-time">YESTERDAY</p><br />
+      <p id="noteTime" class="note-time">YESTERDAY</p><br />
       <hr />
     </div>
-    <div id="container-button">
-      <button id="addButton">+</button>
+    <div class="container-button">
+      <button id="addButton" class="add-button">+</button>
     </div>
   </div>
 
   <!-- add modal  -->
   <div id="editModal" class="modal">
     <div id="modal-content">
-      <div id="edit-title">
+      <div class="edit-title">
         <h2>Add Note</h2>
       </div>
       <div class="input-container">
         <div class="task-name">Title</div>
         <div>
-          <input name="task" id="modal-input" type="text" placeholder="Note title..." />
+          <input name="task" id="modalInput" class="modal-input" type="text" placeholder="Note title..." />
         </div>
       </div><br />
       <div class="input-container">
         <div class="task-name">Note</div>
-        <textarea id="textArea" rows="13" cols="38" placeholder="Start typing your thoughts...">
+        <textarea id="textArea" class="text-area" rows="13" cols="38" placeholder="Start typing your thoughts...">
         </textarea>
       </div>
-      <div id="modal-button">
-        <button id="saveEdit">Save Changes</button>
-        <button id="cancelEdit">Cancel</button>
+      <div class="modal-button">
+        <button id="saveEdit" class="save-edit">Add note</button>
+        <button id="cancelEdit" class="cancel-edit">Cancel</button>
       </div>
     </div>
   </div>

@@ -50,11 +50,11 @@ header h1 {
   flex: 1;
 }
 
-#edit-title {
+.edit-title {
   margin-bottom: 20px;
 }
 
-#search {
+.search {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
@@ -69,17 +69,17 @@ header h1 {
   outline: none;
 }
 
-#search:focus {
+.search:focus {
   border-color: #4f46e5;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-#container-input {
+.container-input {
   text-align: center;
   margin-top: 20px;
 }
 
-#container-list {
+.container-list {
   margin-left: 40px;
   margin-top: 40px;
   width: 90%;
@@ -87,11 +87,16 @@ header h1 {
   cursor: pointer;
 }
 
-#container-list:hover {
+.container-list:hover {
   background-color: #fcfcfd;
 }
 
-#note-paragraph {
+.note-title {
+  font-size: large;
+  font-family: "Iner", sans-serif;
+}
+
+.note-paragraph {
   color: #737476;
   width: 500px;
   white-space: nowrap;
@@ -99,7 +104,7 @@ header h1 {
   text-overflow: ellipsis;
 }
 
-#note-time {
+.note-time {
   color: #aeb0b2;
   font-size: 0.75rem;
   font-weight: 600;
@@ -110,7 +115,7 @@ hr {
   width: 520px;
 }
 
-#container-button {
+.container-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,7 +127,7 @@ hr {
   margin-bottom: 50px;
 }
 
-#addButton {
+.add-button {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -135,7 +140,7 @@ hr {
   cursor: pointer;
 }
 
-#add-button:hover {
+.add-button:hover {
   background-color: #0b52e1;
 }
 
@@ -166,7 +171,7 @@ hr {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-#modal-input {
+.modal-input {
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 12px;
@@ -181,7 +186,7 @@ hr {
   outline: none;
 }
 
-#modal-input::placeholder {
+.modal-input::placeholder {
   color: #737476;
 }
 
@@ -191,7 +196,7 @@ hr {
   gap: 10px;
 }
 
-textarea {
+.text-area {
   background-color: #efeded6d;
   border: none;
   border: 1px solid #dbdfe6;
@@ -203,7 +208,7 @@ textarea {
   outline: none;
 }
 
-textarea::placeholder {
+.text-area::placeholder {
   color: #737476;
 }
 
@@ -212,13 +217,13 @@ textarea::placeholder {
   font-family: "Inter", sans-serif;
 }
 
-#modal-button {
+.modal-button {
   margin-top: 14px;
   display: flex;
   gap: 12px;
 }
 
-#saveEdit {
+.save-edit {
   padding: 20px 90px;
   background-color: #2b6cee;
   color: #f0f2f4;
@@ -229,11 +234,11 @@ textarea::placeholder {
   border: none;
 }
 
-#saveEdit:hover {
+.save-edit:hover {
   background-color: #0b52e1;
 }
 
-#cancelEdit {
+.cancel-edit {
   padding: 20px 53px;
   background-color: red;
   color: #f0f2f4;
@@ -244,6 +249,6 @@ textarea::placeholder {
   border: none;
 }
 
-#cancelEdit:hover {
+.cancel-edit:hover {
   background-color: #e10b0b;
 }
