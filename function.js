@@ -37,27 +37,31 @@ function saveFunction() {
     content: textArea,
   });
 
-  countTask.textContent = notes.length;
+  // countTask.textContent = notes.length;
 
-  notes.forEach((note) => {
-    const noteTitleElement = document.createElement('h3');
-    noteTitleElement.className = 'note-title';
-    noteTitleElement.textContent = note.text; // very important to render a forEach
+  // structure
+  const contentNote = document.createElement('div');
+  contentNote.className = 'content-note';
 
-    const noteTextAreaElement = document.createElement('p');
-    noteTextAreaElement.className = 'note-text-area';
-    noteTextAreaElement.textContent = note.content; // very important to render a forEach
+  const noteTitleElement = document.createElement('h3');
+  noteTitleElement.className = 'note-title';
+  noteTitleElement.textContent = title;
 
-    // const noteTimeElement = document.createElement('p');
-    // noteTimeElement.className = 'note-time';
+  const noteTextAreaElement = document.createElement('p');
+  noteTextAreaElement.className = 'note-text-area';
+  noteTextAreaElement.textContent = textArea;
 
-    const containerNote = document.querySelector('#containerNote');
+  // const noteTimeElement = document.createElement('p');
+  // noteTimeElement.className = 'note-time';
 
-    containerNote.appendChild(noteTitleElement);
-    containerNote.appendChild(noteTextAreaElement);
-    // containerNote.appendChild(noteTimeElement);
-  });
+  // building
+  const containerNote = document.querySelector('#containerNote');
+  containerNote.appendChild(contentNote);
+  containerNote.appendChild(noteTitleElement);
+  containerNote.appendChild(noteTextAreaElement);
+  // containerNote.appendChild(noteTimeElement);
 
+  // value clear 
   noteTitleValue.value = '';
   noteTextAreaValue.value = '';
 

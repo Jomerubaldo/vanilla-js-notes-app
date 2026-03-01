@@ -79,7 +79,7 @@ header h1 {
   margin-top: 20px;
 }
 
-.container-note {
+.content-note {
   margin-left: 40px;
   margin-top: 40px;
   width: 90%;
@@ -87,8 +87,8 @@ header h1 {
   cursor: pointer;
 }
 
-.container-note:hover {
-  background-color: #fcfcfd;
+.content-note:hover {
+  background-color: #ae0d0d;
 }
 
 .note-title {
