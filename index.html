@@ -12,23 +12,16 @@
   <div class="app-wrapper">
     <header>
       <h1>Notes</h1>
+      <p><span id="countTask">0</span></p>
     </header>
     <div class="container-input">
       <input class="search" type="search" placeholder="🔍 Search notes..." />
     </div>
-    <div class="container-list"> <!--Dapat click dapat makikita yung buong text at my etc pa-->
-      <h3 id="noteTitle" class="note-title">Lorem Ipsum</h3></br>
-      <p id="noteParagraph" class="note-paragraph">Is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's standard
-        dummy text ever since the 1500s, when an unknown printer took a galley
-        of type and scrambled it to make a type specimen book. It has survived
-        not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and
-        more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum.</p><br />
-      <p id="noteTime" class="note-time">YESTERDAY</p><br />
-      <hr />
+    <div id="containerNote" class="container-note"> <!--Dapat click dapat makikita yung buong text at my etc pa-->
+      <!-- <h3 id="noteTitle" class="note-title"></h3></br>
+      <p id="noteParagraph" class="note-paragraph"></p><br />
+      <p id="noteTime" class="note-time">YESTERDAY</p><br /> -->
+      <!-- <hr id="horizontalLine" /> -->
     </div>
     <div class="container-button">
       <button id="addButton" class="add-button">+</button>
@@ -53,7 +46,7 @@
         </textarea>
       </div>
       <div class="modal-button">
-        <button id="saveEdit" class="save-edit">Add note</button>
+        <button id="saveNotes" class="save-edit">Add note</button>
         <button id="cancelEdit" class="cancel-edit">Cancel</button>
       </div>
     </div>
