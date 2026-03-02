@@ -55,13 +55,15 @@ function saveFunction() {
   // noteTimeElement.className = 'note-time';
 
   // building
-  const containerNote = document.querySelector('#containerNote');
-  containerNote.appendChild(contentNote);
-  containerNote.appendChild(noteTitleElement);
-  containerNote.appendChild(noteTextAreaElement);
+  contentNote.appendChild(noteTitleElement);
+  contentNote.appendChild(noteTextAreaElement);
   // containerNote.appendChild(noteTimeElement);
 
-  // value clear 
+  // final stage
+  const containerNote = document.querySelector('#containerNote');
+  containerNote.appendChild(contentNote);
+
+  // value clear
   noteTitleValue.value = '';
   noteTextAreaValue.value = '';
 

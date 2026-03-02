@@ -60,7 +60,7 @@ header h1 {
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
-  width: 500px;
+  width: 499px;
   border: 1px solid #dbdfe6;
   background-color: #efeded6d;
   font-size: 1rem;
@@ -80,16 +80,25 @@ header h1 {
 }
 
 .content-note {
-  margin-left: 40px;
-  margin-top: 40px;
-  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5625rem;
+  margin-left: 2.5rem;
+  padding: 20px;
+  gap: 10px;
+  width: 86%;
+  background: white;
   border-radius: 10px;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
 }
 
 .content-note:hover {
-  background-color: #ae0d0d;
+  transform: translateY(-3px);
 }
+
+/* to view notes inside container */
 
 .note-title {
   font-size: large;
@@ -97,8 +106,10 @@ header h1 {
 }
 
 .note-text-area {
+  text-align: start;
+  padding: 0;
   color: #737476;
-  width: 500px;
+  width: 470px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -115,16 +126,16 @@ hr {
   width: 520px;
 }
 
-.container-button {
+.container-add-button {
   display: flex;
   justify-content: center;
   align-items: center;
   position: sticky;
   bottom: 0;
   z-index: 10;
-  margin-top: 430px;
+  margin-top: 480px;
   margin-left: 430px;
-  margin-bottom: 50px;
+  padding-bottom: 30px
 }
 
 .add-button {
@@ -224,7 +235,7 @@ hr {
 }
 
 .save-edit {
-  padding: 20px 90px;
+  padding: 1.25rem 6.25rem;
   background-color: #2b6cee;
   color: #f0f2f4;
   font-size: 0.80rem;
@@ -239,7 +250,7 @@ hr {
 }
 
 .cancel-edit {
-  padding: 20px 53px;
+  padding: 1.25rem 3.75rem;
   background-color: red;
   color: #f0f2f4;
   font-size: 0.80rem;

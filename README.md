@@ -14,3 +14,5 @@ and after that it display to the UI.
 Issue:
 
 Fix:
+
+need to implement later is yung kapag nag add na ng notes tapos nasa ui na siya kapag e click yung container ng notes is ma view mo yong nasa loob na mga notes like title and paragraph or textarea na nasa loob.
