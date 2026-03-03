@@ -156,7 +156,7 @@ hr {
 }
 
 /* add modal part */
-.modal {
+.add-modal-container {
   width: 100vw;
   height: 100vh;
   display: none;
@@ -168,7 +168,7 @@ hr {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-#modal-content {
+.add-modal-content {
   background-color: #ffffff;
   width: 90%;
   max-width: 512px;
@@ -262,4 +262,18 @@ hr {
 
 .cancel-edit:hover {
   background-color: #e10b0b;
+}
+
+/* view modal */
+
+.view-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-modal-content {
+  width: 200px;
+  height: 200px;
+  background-color: wheat;
 }

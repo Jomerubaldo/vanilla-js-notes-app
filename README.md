@@ -9,10 +9,17 @@ and after that it display to the UI.
 
 ✅ 3. Implement and proper way to create name for ID and CLASS selector and for DOM javascript. for ID its for DOM javascript, and also for css its an CLASS selector
 
-🐞 Issues Encountered & Fixes ✅ 1.
+✅ 4. Implement an DRY principle of coding meaning is Dont Repeat Yourself like if you have an function you cant reusable it in other dont declared function again with same logic thats an DRY principle i implement this project.
+
+✅ 5. Implement an validation if the user enter with empty title but having value in note the modal show or warning show need to enter an title but when title haved value but note empty there an also modal show need to enter an note value therefore if the both side no empty value theres an modal show again for please enter both title and note value.
+
+🐞 Issues Encountered & Fixes:
 
 Issue:
+1. When i implement an validation for the title and note i ecounter an logic like if the user enter empty value for title theres an modal show and also for note too but when user both side empty value the validation is check the title direct not for the 3rd condition like theres an modal show for both side empty value modal showed.
 
 Fix:
 
+
+On going implementation:
 need to implement later is yung kapag nag add na ng notes tapos nasa ui na siya kapag e click yung container ng notes is ma view mo yong nasa loob na mga notes like title and paragraph or textarea na nasa loob.

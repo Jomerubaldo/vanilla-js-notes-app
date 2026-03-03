@@ -1,13 +1,12 @@
+// DOM SECTION
 const countTask = document.querySelector('#countTask');
 const noteTitleValue = document.querySelector('#modalInput');
 const noteTextAreaValue = document.querySelector('#textArea');
-// const noteTitleElement = document.querySelector('#noteTitle');
-// const noteParagraphElement = document.querySelector('#noteParagraph');
-// const noteTimeElement = document.querySelector('#noteTime');
 const addNoteBtn = document.querySelector('#addButton');
 const editModal = document.querySelector('#editModal');
 const cancelEdit = document.querySelector('#cancelEdit');
-const saveNotes = document.querySelector('#saveNotes');
+const saveAddNotes = document.querySelector('#saveAddNotes');
+const containerNote = document.querySelector('#containerNote');
 
 // save to localStorage
 // const notes = JSON.parse(localStorage.setItem('notes')) || [];
@@ -16,21 +15,52 @@ const saveNotes = document.querySelector('#saveNotes');
 //   localStorage.setItem('notes', JSON.stringify(notes));
 // }
 
-addNoteBtn.addEventListener('click', addFunction);
+// STATE SECTION
+const notes = [];
 
+// EVENT SECTION
+addNoteBtn.addEventListener('click', addFunction);
+saveAddNotes.addEventListener('click', saveAddFunction);
+cancelEdit.addEventListener('click', cancelFunction);
+
+// LOGIC SECTION
 function addFunction() {
   editModal.style.display = 'flex'; // show modal
   // prevent background scrolling while open modal
   document.body.classList.add('modal-open');
 }
 
-saveNotes.addEventListener('click', saveFunction);
+// reusable close modal
+function closeModal() {
+  document.body.classList.remove('modal-open');
+  editModal.style.display = 'none';
+}
 
-const notes = [];
-
-function saveFunction() {
+function saveAddFunction() {
   const title = noteTitleValue.value;
   const textArea = noteTextAreaValue.value;
+
+  if (!title.trim() && !textArea.trim()) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Empty Fields',
+      text: 'Please enter a title and note before saving.',
+    });
+    return;
+  } else if (!title.trim()) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Empty Fields',
+      text: 'Please enter a title.',
+    });
+    return;
+  } else {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Empty Fields',
+      text: 'Please enter a note.',
+    });
+  }
 
   notes.push({
     text: title,
@@ -39,7 +69,6 @@ function saveFunction() {
 
   // countTask.textContent = notes.length;
 
-  // structure
   const contentNote = document.createElement('div');
   contentNote.className = 'content-note';
 
@@ -54,29 +83,18 @@ function saveFunction() {
   // const noteTimeElement = document.createElement('p');
   // noteTimeElement.className = 'note-time';
 
-  // building
+  // building structure
   contentNote.appendChild(noteTitleElement);
   contentNote.appendChild(noteTextAreaElement);
   // containerNote.appendChild(noteTimeElement);
-
-  // final stage
-  const containerNote = document.querySelector('#containerNote');
   containerNote.appendChild(contentNote);
 
-  // value clear
   noteTitleValue.value = '';
   noteTextAreaValue.value = '';
 
-  // remove prevent background scrolling so back to normal when modal is close
-  document.body.classList.remove('modal-open');
-  editModal.style.display = 'none';
+  closeModal();
 }
 
-// cancel
-cancelEdit.addEventListener('click', cancelFunction);
-
 function cancelFunction() {
-  // remove prevent background scrolling so back to normal when modal is close
-  document.body.classList.remove('modal-open');
-  editModal.style.display = 'none';
+  closeModal();
 }

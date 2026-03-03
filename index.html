@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="#">
   <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>Notes App</title>
 </head>
 
@@ -28,9 +29,9 @@
     </div>
   </div>
 
-  <!-- add modal show  -->
-  <div id="editModal" class="modal">
-    <div id="modal-content">
+  <!-- add notes modal  -->
+  <div id="editModal" class="add-modal-container">
+    <div class="add-modal-content">
       <div class="edit-title">
         <h2>Add Note</h2>
       </div>
@@ -46,11 +47,20 @@
         </textarea>
       </div>
       <div class="modal-button">
-        <button id="saveNotes" class="save-edit">Add note</button>
+        <button id="saveAddNotes" class="save-edit">Add note</button>
         <button id="cancelEdit" class="cancel-edit">Cancel</button>
       </div>
     </div>
   </div>
+
+  <!-- view notes modal -->
+  <div class="view-modal-container" id="viewModalContainer">
+    <div class="view-modal-content" id="viewModalContent">
+      <h1>View Content</h1>
+      <p>This is an sample of view an modal when its click</p>
+    </div>
+  </div>
+
 </body>
 <script src="function.js"></script>
 
