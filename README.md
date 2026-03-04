@@ -18,7 +18,7 @@ and after that it display to the UI.
 Issue:
 1. When i implement an validation for the title and note i ecounter an logic like if the user enter empty value for title theres an modal show and also for note too but when user both side empty value the validation is check the title direct not for the 3rd condition like theres an modal show for both side empty value modal showed.
 
-Fix:
+Fix: I used nested if for one if is for the declaration like if the both side is empty fields they have message show and i deaclred an message variable so even if what condition is check then find its true theres an message variable storage what the message is.
 
 
 On going implementation:

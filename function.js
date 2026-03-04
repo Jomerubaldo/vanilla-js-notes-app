@@ -40,26 +40,24 @@ function saveAddFunction() {
   const title = noteTitleValue.value;
   const textArea = noteTextAreaValue.value;
 
-  if (!title.trim() && !textArea.trim()) {
+  if (!title.trim() || !textArea.trim()) {
+    let message = '';
+
+    if (!title.trim() && !textArea.trim()) {
+      message = 'Please enter both a title and a note fields';
+    } else if (!title.trim()) {
+      message = 'Please enter a title';
+    } else {
+      message = 'Please enter a note';
+    }
+
     Swal.fire({
       icon: 'warning',
-      title: 'Empty Fields',
-      text: 'Please enter a title and note before saving.',
+      title: 'Oops...',
+      text: message, //called variable
     });
-    return;
-  } else if (!title.trim()) {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Empty Fields',
-      text: 'Please enter a title.',
-    });
-    return;
-  } else {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Empty Fields',
-      text: 'Please enter a note.',
-    });
+
+    return; //last call return to back the logic dalidation at a top
   }
 
   notes.push({
@@ -80,6 +78,19 @@ function saveAddFunction() {
   noteTextAreaElement.className = 'note-text-area';
   noteTextAreaElement.textContent = textArea;
 
+  contentNote.addEventListener('click', function () {
+    // DOM FOR VIEW-MODAL-NOTES
+    const viewModalContainer = document.querySelector('#viewModalContainer');
+    const viewTitle = document.querySelector('#viewNoteTitle');
+    const viewParagraph = document.querySelector('#viewNoteParagraph');
+
+    viewTitle.textContent = title;
+    viewParagraph.textContent = textArea;
+
+    viewModalContainer.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  });
+
   // const noteTimeElement = document.createElement('p');
   // noteTimeElement.className = 'note-time';
 
@@ -98,3 +109,5 @@ function saveAddFunction() {
 function cancelFunction() {
   closeModal();
 }
+
+//need refactor to clean code DRY principle

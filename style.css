@@ -265,15 +265,26 @@ hr {
 }
 
 /* view modal */
-
 .view-modal-container {
-  display: flex;
+  display: none;
+  /* hidden by default */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 .view-modal-content {
-  width: 200px;
-  height: 200px;
-  background-color: wheat;
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 512px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
