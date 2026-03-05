@@ -89,6 +89,14 @@ function saveAddFunction() {
 
     viewModalContainer.style.display = 'flex';
     document.body.classList.add('modal-open');
+
+    // close modal in view note
+    const closeViewModal = document.querySelector('#closeViewModal');
+
+    closeViewModal.addEventListener('click', function () {
+      document.body.classList.remove('modal-open');
+      viewModalContainer.style.display = 'none';
+    });
   });
 
   // const noteTimeElement = document.createElement('p');
