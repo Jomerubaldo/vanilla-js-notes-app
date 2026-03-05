@@ -40,10 +40,10 @@ function saveAddFunction() {
   const title = noteTitleValue.value;
   const textArea = noteTextAreaValue.value;
 
-  if (!title.trim() || !textArea.trim()) {
+  if (!title.trim() || !textArea) {
     let message = '';
 
-    if (!title.trim() && !textArea.trim()) {
+    if (!title.trim() && !textArea) {
       message = 'Please enter both a title and a note fields';
     } else if (!title.trim()) {
       message = 'Please enter a title';
@@ -89,14 +89,14 @@ function saveAddFunction() {
 
     viewModalContainer.style.display = 'flex';
     document.body.classList.add('modal-open');
+  });
 
-    // close modal in view note
-    const closeViewModal = document.querySelector('#closeViewModal');
+  // close modal in view note
+  const closeViewModal = document.querySelector('#closeViewModal');
 
-    closeViewModal.addEventListener('click', function () {
-      document.body.classList.remove('modal-open');
-      viewModalContainer.style.display = 'none';
-    });
+  closeViewModal.addEventListener('click', function () {
+    document.body.classList.remove('modal-open');
+    viewModalContainer.style.display = 'none';
   });
 
   // const noteTimeElement = document.createElement('p');

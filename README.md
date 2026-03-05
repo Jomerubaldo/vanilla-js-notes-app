@@ -13,6 +13,8 @@ and after that it display to the UI.
 
 ✅ 5. Implement an validation if the user enter with empty title but having value in note the modal show or warning show need to enter an title but when title haved value but note empty there an also modal show need to enter an note value therefore if the both side no empty value theres an modal show again for please enter both title and note value.
 
+✅ 6. Implement an header section in viewNote and inside it make an back button and edit button or function.
+
 🐞 Issues Encountered & Fixes:
 
 Issue:
