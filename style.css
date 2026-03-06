@@ -105,7 +105,6 @@ header h1 {
 }
 
 /* to view notes inside container */
-
 .note-title {
   font-size: large;
   font-family: "Iner", sans-serif;
@@ -266,8 +265,8 @@ header h1 {
 
 /* view modal */
 .view-modal-container {
-  display: none;
   /* hidden by default */
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
