@@ -78,6 +78,9 @@ function saveAddFunction() {
   noteTextAreaElement.className = 'note-text-area';
   noteTextAreaElement.textContent = textArea;
 
+  const horizontalElement = document.createElement('hr');
+  horizontalElement.className = 'horizontal-line';
+
   contentNote.addEventListener('click', function () {
     // DOM FOR VIEW-MODAL-NOTES
     const viewModalContainer = document.querySelector('#viewModalContainer');
@@ -99,12 +102,15 @@ function saveAddFunction() {
     viewModalContainer.style.display = 'none';
   });
 
+  lucide.createIcons();
+
   // const noteTimeElement = document.createElement('p');
   // noteTimeElement.className = 'note-time';
 
   // building structure
   contentNote.appendChild(noteTitleElement);
   contentNote.appendChild(noteTextAreaElement);
+  contentNote.appendChild(horizontalElement);
   // containerNote.appendChild(noteTimeElement);
   containerNote.appendChild(contentNote);
 
