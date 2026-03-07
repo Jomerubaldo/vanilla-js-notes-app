@@ -36,6 +36,8 @@
       <!-- <p id="noteTime" class="note-time">YESTERDAY</p><br /> -->
       <!-- <hr id="horizontalLine" /> -->
     </div>
+
+    <!-- circle blue add notes -->
     <div class="container-add-button">
       <button class="add-button" id="addButton">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white"
@@ -79,16 +81,10 @@
   <div class="view-modal-container" id="viewModalContainer">
     <div class="view-modal-content" id="viewModalContent">
       <div class="header-viewModal">
-        <button id="closeViewModal">
+        <button class="close-view-modal" id="closeViewModal">
           <i data-lucide="arrow-left"></i>
         </button>
-        <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical">
-            <circle cx="12" cy="12" r="1" />
-            <circle cx="12" cy="5" r="1" />
-            <circle cx="12" cy="19" r="1" />
-          </svg></h2>
+        <p>Edit</p>
       </div>
       <h3 class="viewTitle" id="viewNoteTitle"></h3>
       <p class="viewParagraph" id="viewNoteParagraph"></p>
@@ -99,5 +95,3 @@
 <script src="function.js"></script>
 
 </html>
-
-<!-- lagyan ng width ang title paragraph at horizontal para align tignan sa screen -->

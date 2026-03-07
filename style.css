@@ -72,7 +72,7 @@ header h1 {
 .container-input svg {
   position: absolute;
   top: 50%;
-  left: 1.5rem;
+  left: 1rem;
   /* relative to the container, not a magic pixel offset */
   transform: translateY(-50%);
   pointer-events: none;
@@ -97,14 +97,15 @@ header h1 {
 .container-note {
   margin-top: 20px;
   flex: 1;
+  padding: 20px;
+  padding-left: 20px;
   /* grow so the add button doesn't overlap */
 }
 
 .content-note {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  padding-right: 20px;
+  padding-top: 20px;
   gap: 15px;
   width: calc(100% - 1.3rem);
   /* was a fixed 86% which overflowed on small screens */
@@ -120,7 +121,7 @@ header h1 {
 .note-text-area {
   text-align: start;
   color: #6C7381;
-  width: 100%;
+  width: 103%;
   /* was 490px — fixed and overflowing on mobile */
   white-space: nowrap;
   overflow: hidden;
@@ -129,34 +130,31 @@ header h1 {
 
 .horizontal-line {
   border: 1px solid #dcdddf;
-  width: 100%;
+  width: 103%;
   /* was 490px */
 }
 
 /* ── Floating add button ── */
 .container-add-button {
-  display: flex;
-  justify-content: flex-end;
-  /* stick to the right edge */
-  align-items: center;
-  position: sticky;
-  bottom: 0;
-  z-index: 10;
-  padding: 0 1.5rem 1.5rem 0;
-  /* spacing from the edges */
-  /* removed the hard-coded margin-left: 450px and margin-top: 480px */
+  position: fixed;
+  bottom: 1.5rem;
+  /* Align sa right edge ng white card, hindi sa screen edge */
+  right: max(1.5rem, calc((100vw - 36rem) / 2 + 1.5rem));
+  z-index: 999;
   pointer-events: none;
-  /* let clicks through the transparent area */
+}
+
+/* hidden button add circle blue when modal is showed */
+.modal-open .container-add-button {
+  display: none;
 }
 
 .add-button {
-  bottom: 30px;
-  right: 30px;
   width: 70px;
   height: 70px;
   border: none;
   border-radius: 50%;
-  background: none;
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -307,13 +305,22 @@ header h1 {
   /* breathing room on small screens */
 }
 
+.view-modal-content {
+  background-color: #ffffff;
+  width: 100%;
+  /* was 80% — fills the padded container */
+  max-width: 512px;
+  height: 100vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 .header-viewModal {
-  background-color: #111318;
   margin: 0;
   width: 100%;
   padding: 1rem 2rem;
-  border-radius: 10px 10px 0 0;
-  color: #ffffff;
   position: sticky;
   z-index: 10;
   top: 0;
@@ -322,31 +329,24 @@ header h1 {
   align-items: center;
 }
 
-#closeViewModal {
+.close-view-modal {
   background: none;
   border: none;
-  color: #ffffff;
+  color: #000000;
   cursor: pointer;
   display: flex;
   align-items: center;
   padding: 4px;
 }
 
-.view-modal-content {
-  background-color: #ffffff;
-  width: 100%;
-  /* was 80% — fills the padded container */
-  max-width: 512px;
-  height: 80vh;
-  overflow-y: auto;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
+.header-viewModal p {
+  color: orange;
+  font-weight: 700;
 }
 
 .viewTitle {
   padding: 1.5rem 2rem 0.5rem 2rem;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 700;
   border: none;
   outline: none;
@@ -354,10 +354,10 @@ header h1 {
 }
 
 .viewParagraph {
-  padding: 0 2rem 2rem 2rem;
+  padding: 2rem 2rem 2rem 2rem;
   flex: 1;
   line-height: 1.7;
-  color: #5F6675;
+  color: #1E293B;
   white-space: pre-wrap;
 }
 
