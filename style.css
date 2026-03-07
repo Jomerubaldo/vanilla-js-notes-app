@@ -13,7 +13,7 @@ body.modal-open {
 
 body {
   font-family: 'Inter', sans-serif;
-  min-height: max(884px, 100dvh);
+  min-height: 100vh;
   background-color: #f6f6f8;
   color: #111318;
 }
@@ -47,12 +47,7 @@ header h1 {
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.025em;
-  padding-left: 15px;
   flex: 1;
-}
-
-header p {
-  padding-right: 20px;
 }
 
 .edit-title {
@@ -64,13 +59,32 @@ header p {
   color: #6B7280;
 }
 
+/* ── Search bar ── */
+.container-input {
+  position: relative;
+  display: flex;
+  /* was inline-block — this breaks on mobile */
+  justify-content: center;
+  margin: 20px 1rem 0;
+  /* side margin instead of relying on fixed widths */
+}
+
+.container-input svg {
+  position: absolute;
+  top: 50%;
+  left: 1.5rem;
+  /* relative to the container, not a magic pixel offset */
+  transform: translateY(-50%);
+  pointer-events: none;
+  fill: #888;
+}
+
 .search {
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  width: 100%;
+  /* fills available space */
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
+  /* room for the icon on the left */
   border-radius: 10px;
-  width: 499px;
   background-color: #F2F2F7;
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
@@ -79,53 +93,35 @@ header p {
   border: none;
 }
 
-.container-input {
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.container-input svg {
-  position: absolute;
-  top: 29%;
-  left: 65px;
-  transform: translate(-50%);
-  pointer-events: none;
-  fill: #888;
-}
-
-.container-input input {
-  padding-left: 47px;
-  font-size: 18px
-}
-
+/* ── Notes list ── */
 .container-note {
   margin-top: 20px;
+  flex: 1;
+  /* grow so the add button doesn't overlap */
 }
 
 .content-note {
   display: flex;
   flex-direction: column;
-  margin-left: 1.3rem;
   padding: 20px;
   padding-right: 20px;
   gap: 15px;
-  width: 86%;
+  width: calc(100% - 1.3rem);
+  /* was a fixed 86% which overflowed on small screens */
   cursor: pointer;
 }
 
-/* to view notes inside container */
 .note-title {
   font-size: large;
-  font-family: "Iner", sans-serif;
+  font-family: "Inter", sans-serif;
   color: #111827;
 }
 
 .note-text-area {
   text-align: start;
   color: #6C7381;
-  width: 470px;
+  width: 100%;
+  /* was 490px — fixed and overflowing on mobile */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -133,19 +129,24 @@ header p {
 
 .horizontal-line {
   border: 1px solid #dcdddf;
-  width: 470px;
+  width: 100%;
+  /* was 490px */
 }
 
+/* ── Floating add button ── */
 .container-add-button {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  /* stick to the right edge */
   align-items: center;
   position: sticky;
   bottom: 0;
   z-index: 10;
-  margin-top: 480px;
-  margin-left: 430px;
-  padding-bottom: 30px
+  padding: 0 1.5rem 1.5rem 0;
+  /* spacing from the edges */
+  /* removed the hard-coded margin-left: 450px and margin-top: 480px */
+  pointer-events: none;
+  /* let clicks through the transparent area */
 }
 
 .add-button {
@@ -160,6 +161,8 @@ header p {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  pointer-events: all;
+  /* re-enable clicks on the button itself */
 }
 
 .add-button svg {
@@ -167,7 +170,11 @@ header p {
   height: 70px;
 }
 
-/* add modal part */
+.add-button:hover svg circle {
+  fill: #1E5BD8;
+}
+
+/* ── Add note modal ── */
 .add-modal-container {
   width: 100vw;
   height: 100vh;
@@ -178,13 +185,18 @@ header p {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  /* breathing room on very small screens */
 }
 
 .add-modal-content {
   background-color: #ffffff;
-  width: 90%;
+  width: 100%;
+  /* was 90% — using 100% inside the padded container works better */
   max-width: 512px;
-  height: 670px;
+  height: auto;
+  /* was a fixed 670px — let it breathe */
+  max-height: 90vh;
   overflow-y: auto;
   border-radius: 5px;
   padding: 2.5rem;
@@ -195,16 +207,13 @@ header p {
 }
 
 .modal-input {
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 0.75rem;
   border-radius: 10px;
-  width: 430px;
+  width: 100%;
+  /* was 430px — overflowed on mobile */
   font-size: large;
   font-family: "Inter", sans-serif;
   background-color: #efeded6d;
-  border: none;
   border: 1px solid #dbdfe6;
   outline: none;
 }
@@ -221,7 +230,6 @@ header p {
 
 .text-area {
   background-color: #efeded6d;
-  border: none;
   border: 1px solid #dbdfe6;
   padding: 15px;
   font-size: large;
@@ -229,6 +237,8 @@ header p {
   border-radius: 10px;
   resize: none;
   outline: none;
+  width: 100%;
+  /* ensure it doesn't overflow its container */
 }
 
 .text-area::placeholder {
@@ -244,10 +254,14 @@ header p {
   margin-top: 14px;
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+  /* wrap buttons on very small screens */
 }
 
 .save-edit {
-  padding: 1.25rem 6.25rem;
+  flex: 1;
+  /* share space with cancel button */
+  padding: 1.25rem 1rem;
   background-color: #2b6cee;
   color: #f0f2f4;
   font-size: 0.80rem;
@@ -255,6 +269,7 @@ header p {
   font-weight: 700;
   border-radius: 5px;
   border: none;
+  cursor: pointer;
 }
 
 .save-edit:hover {
@@ -262,7 +277,9 @@ header p {
 }
 
 .cancel-edit {
-  padding: 1.25rem 3.75rem;
+  flex: 1;
+  /* share space with save button */
+  padding: 1.25rem 1rem;
   background-color: red;
   color: #f0f2f4;
   font-size: 0.80rem;
@@ -270,15 +287,15 @@ header p {
   font-weight: 700;
   border-radius: 5px;
   border: none;
+  cursor: pointer;
 }
 
 .cancel-edit:hover {
   background-color: #e10b0b;
 }
 
-/* view modal */
+/* ── View note modal ── */
 .view-modal-container {
-  /* hidden by default */
   display: none;
   position: fixed;
   inset: 0;
@@ -286,6 +303,8 @@ header p {
   justify-content: center;
   align-items: center;
   z-index: 999;
+  padding: 1rem;
+  /* breathing room on small screens */
 }
 
 .header-viewModal {
@@ -303,9 +322,20 @@ header p {
   align-items: center;
 }
 
+#closeViewModal {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
 .view-modal-content {
   background-color: #ffffff;
-  width: 80%;
+  width: 100%;
+  /* was 80% — fills the padded container */
   max-width: 512px;
   height: 80vh;
   overflow-y: auto;
@@ -329,4 +359,19 @@ header p {
   line-height: 1.7;
   color: #5F6675;
   white-space: pre-wrap;
+}
+
+/* ── Small phone adjustments (<= 400px) ── */
+@media (max-width: 400px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .add-modal-content {
+    padding: 1.5rem;
+  }
+
+  .viewTitle {
+    font-size: 1.2rem;
+  }
 }
