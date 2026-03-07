@@ -36,7 +36,7 @@ header {
   align-items: center;
   background-color: #ffffff;
   padding: 1.5rem;
-  border-bottom: 3px solid #f0f2f4;
+  border-bottom: 2px solid #dcdddf;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -47,21 +47,31 @@ header h1 {
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.025em;
+  padding-left: 15px;
   flex: 1;
+}
+
+header p {
+  padding-right: 20px;
 }
 
 .edit-title {
   margin-bottom: 20px;
 }
 
+.count-task {
+  font-size: 20px;
+  color: #6B7280;
+}
+
 .search {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-radius: 10px;
   width: 499px;
-  background-color: #F9FAFB;
+  background-color: #F2F2F7;
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
   color: #111318;
@@ -78,19 +88,20 @@ header h1 {
 
 .container-input svg {
   position: absolute;
-  top: 21%;
-  left: 55px;
+  top: 29%;
+  left: 65px;
   transform: translate(-50%);
   pointer-events: none;
   fill: #888;
 }
 
 .container-input input {
-  padding-left: 37px;
+  padding-left: 47px;
+  font-size: 18px
 }
 
 .container-note {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .content-note {
@@ -108,12 +119,12 @@ header h1 {
 .note-title {
   font-size: large;
   font-family: "Iner", sans-serif;
-  color: #0D1529;
+  color: #111827;
 }
 
 .note-text-area {
   text-align: start;
-  color: #404958;
+  color: #6C7381;
   width: 470px;
   white-space: nowrap;
   overflow: hidden;
@@ -138,20 +149,22 @@ header h1 {
 }
 
 .add-button {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 2rem;
-  font-weight: 500;
-  color: #FFFFFF;
-  background-color: #1152D4;
+  bottom: 30px;
+  right: 30px;
+  width: 70px;
+  height: 70px;
   border: none;
-  text-align: center;
+  border-radius: 50%;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
-.add-button:hover {
-  background-color: #0b52e1;
+.add-button svg {
+  width: 70px;
+  height: 70px;
 }
 
 /* add modal part */
