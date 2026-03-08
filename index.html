@@ -55,8 +55,14 @@
   <!-- add notes modal  -->
   <div id="editModal" class="add-modal-container">
     <div class="add-modal-content">
-      <div class="edit-title">
+      <div class="header-add-modal">
         <h2>Add Note</h2>
+        <p id="headerCloseModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-x-icon lucide-x">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg></p>
       </div>
       <div class="input-container">
         <div class="task-name">Title</div>
@@ -70,14 +76,13 @@
           placeholder="Start typing your thoughts..."></textarea>
       </div>
       <div class="modal-button">
-        <button id="saveAddNotes" class="save-edit">Add note</button>
+        <button id="saveAddNotes" class="save-edit">Save Note</button>
         <button id="cancelEdit" class="cancel-edit">Cancel</button>
       </div>
     </div>
   </div>
 
   <!-- view notes modal -->
-
   <div class="view-modal-container" id="viewModalContainer">
     <div class="view-modal-content" id="viewModalContent">
       <div class="header-viewModal">
