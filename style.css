@@ -50,8 +50,20 @@ header h1 {
   flex: 1;
 }
 
-.edit-title {
+header p {
+  cursor: pointer;
+}
+
+.header-add-modal {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-add-modal p {
+  color: #808182;
+  cursor: pointer;
 }
 
 .count-task {
@@ -211,7 +223,7 @@ header h1 {
   /* was 430px — overflowed on mobile */
   font-size: large;
   font-family: "Inter", sans-serif;
-  background-color: #efeded6d;
+  background-color: #F8FAFC;
   border: 1px solid #dbdfe6;
   outline: none;
 }
@@ -227,7 +239,7 @@ header h1 {
 }
 
 .text-area {
-  background-color: #efeded6d;
+  background-color: #F8FAFC;
   border: 1px solid #dbdfe6;
   padding: 15px;
   font-size: large;
@@ -260,7 +272,7 @@ header h1 {
   flex: 1;
   /* share space with cancel button */
   padding: 1.25rem 1rem;
-  background-color: #2b6cee;
+  background-color: #EC5B13;
   color: #f0f2f4;
   font-size: 0.80rem;
   font-family: "Inter", sans-serif;
@@ -271,15 +283,15 @@ header h1 {
 }
 
 .save-edit:hover {
-  background-color: #0b52e1;
+  background-color: #D55211;
 }
 
 .cancel-edit {
   flex: 1;
   /* share space with save button */
   padding: 1.25rem 1rem;
-  background-color: red;
-  color: #f0f2f4;
+  background-color: #F8FAFC;
+  color: #000000;
   font-size: 0.80rem;
   font-family: "Inter", sans-serif;
   font-weight: 700;
@@ -289,7 +301,7 @@ header h1 {
 }
 
 .cancel-edit:hover {
-  background-color: #e10b0b;
+  background-color: #e0e0e06d;
 }
 
 /* ── View note modal ── */
@@ -318,11 +330,12 @@ header h1 {
 }
 
 .header-viewModal {
+  background-color: #FFFFFF;
   margin: 0;
   width: 100%;
   padding: 1rem 2rem;
   position: sticky;
-  z-index: 10;
+  z-index: 999;
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -342,6 +355,7 @@ header h1 {
 .header-viewModal p {
   color: orange;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .viewTitle {
