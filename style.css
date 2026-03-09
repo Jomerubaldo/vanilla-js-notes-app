@@ -352,13 +352,38 @@ header p {
   padding: 4px;
 }
 
+.edit-delete-header {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-view-modal {
+  color: #EC5B13;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.delete-view-modal {
+  color: #EC5B13;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 .header-viewModal p {
   color: orange;
   font-weight: 700;
   cursor: pointer;
 }
 
-.viewTitle {
+.view-title {
   padding: 1.5rem 2rem 0.5rem 2rem;
   font-size: 1.8rem;
   font-weight: 700;
@@ -367,12 +392,39 @@ header p {
   color: #111827;
 }
 
-.viewParagraph {
+.view-paragraph {
+  width: 100%;
+  min-height: 640px;
+  max-height: 420px;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: 'Inter', serif;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #3a332a;
+  cursor: text;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d4c4a8 transparent;
   padding: 2rem 2rem 2rem 2rem;
-  flex: 1;
-  line-height: 1.7;
   color: #1E293B;
   white-space: pre-wrap;
+}
+
+.view-paragraph::placeholder {
+  color: #c4b8a4;
+  font-style: italic;
+}
+
+.view-paragraph::-webkit-scrollbar {
+  width: 4px;
+}
+
+.view-paragraph::-webkit-scrollbar-thumb {
+  background: #d4c4a8;
+  border-radius: 4px;
 }
 
 /* ── Small phone adjustments (<= 400px) ── */

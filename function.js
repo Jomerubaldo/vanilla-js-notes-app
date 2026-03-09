@@ -12,14 +12,21 @@ const headerCloseModal = document.querySelector('#headerCloseModal');
 
 // STATE (DATA)
 let notes = JSON.parse(localStorage.getItem('notes')) || [];
+let currentNoteIndex = null;
 
 // STORAGE
 function saveNotes() {
   localStorage.setItem('notes', JSON.stringify(notes));
 }
 
+let isEditing = false;
+
+const editViewModal = document.querySelector('#editViewModal');
+
 // UI FUNCTIONS
-function createNote(title, textArea) {
+function createNote(title, textArea, index) {
+  currentNoteIndex = index;
+
   const contentNote = document.createElement('div');
   contentNote.className = 'content-note';
 
@@ -29,10 +36,30 @@ function createNote(title, textArea) {
     const viewParagraph = document.querySelector('#viewNoteParagraph');
 
     viewTitle.textContent = title;
-    viewParagraph.textContent = textArea;
+    viewParagraph.value = textArea;
 
     viewModalContainer.style.display = 'flex';
     document.body.classList.add('modal-open');
+
+    editViewModal.addEventListener('click', () => {
+      if (!isEditing) {
+        isEditing = true;
+        editViewModal.textContent = 'Save';
+        viewParagraph.removeAttribute('readonly');
+        viewParagraph.focus();
+      } else {
+        notes[currentNoteIndex].content = viewParagraph.value;
+        saveEditNote();
+        isEditing = false;
+        editViewModal.textContent = 'Edit';
+        viewParagraph.setAttribute('readonly', true);
+      }
+    });
+
+    function saveEditNote() {
+      textArea = viewParagraph.value;
+      saveNotes();
+    }
   });
 
   const noteTitleElement = document.createElement('h3');
@@ -55,8 +82,8 @@ function createNote(title, textArea) {
 
 // render saved notes
 function renderNotes() {
-  notes.forEach((note) => {
-    createNote(note.text, note.content);
+  notes.forEach((note, index) => {
+    createNote(note.text, note.content, index);
   });
 }
 
@@ -110,7 +137,7 @@ function addNote() {
 
   saveNotes();
 
-  createNote(title, textArea);
+  createNote(title, textArea, notes.length - 1);
 
   noteTitleValue.value = '';
   noteTextAreaValue.value = '';

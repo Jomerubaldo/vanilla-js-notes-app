@@ -15,6 +15,9 @@ and after that it display to the UI.
 
 ✅ 6. Implement an header section in viewNote and inside it make an back button and edit button or function.
 
+✅ 7. Implement an edit button using index to located what index or array is editing and save it
+
+
 🐞 Issues Encountered & Fixes:
 
 Issue:

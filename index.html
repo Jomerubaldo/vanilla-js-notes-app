@@ -89,10 +89,13 @@
         <button class="close-view-modal" id="closeViewModal">
           <i data-lucide="arrow-left"></i>
         </button>
-        <p>Edit</p>
+        <div class="edit-delete-header">
+          <button id="editViewModal" class="edit-view-modal">Edit</button>
+          <button class="delete-view-modal">Delete</button>
+        </div>
       </div>
-      <h3 class="viewTitle" id="viewNoteTitle"></h3>
-      <p class="viewParagraph" id="viewNoteParagraph"></p>
+      <h3 class="view-title" id="viewNoteTitle"></h3>
+      <textarea class="view-paragraph" id="viewNoteParagraph" readonly></textarea>
     </div>
   </div>
 
