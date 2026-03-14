@@ -5,7 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="#">
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"> -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <title>Notes App</title>
@@ -32,21 +37,16 @@
       <input class="search" type="search" placeholder="Search notes...">
     </div>
     <div class="container-note" id="containerNote">
-      <!--Dapat click dapat makikita yung buong text at my etc pa-->
-      <!-- <p id="noteTime" class="note-time">YESTERDAY</p><br /> -->
-      <!-- <hr id="horizontalLine" /> -->
     </div>
 
-    <!-- circle blue add notes -->
+    <!-- circle blue add notes modal -->
     <div class="container-add-button">
       <button class="add-button" id="addButton">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white"
           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-
           <circle cx="12" cy="12" r="11" fill="#2b6cee" />
           <path d="M8 12h8" stroke-width="1" />
           <path d="M12 8v8" stroke-width="1" />
-
         </svg>
       </button>
     </div>
@@ -100,6 +100,6 @@
   </div>
 
 </body>
-<script src="function.js"></script>
+<script src="/js/main.js"></script>
 
 </html>

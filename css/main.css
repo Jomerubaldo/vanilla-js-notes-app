@@ -12,7 +12,7 @@ body.modal-open {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto', sans-serif;
   min-height: 100vh;
   background-color: #f6f6f8;
   color: #111318;
@@ -99,7 +99,7 @@ header p {
   border-radius: 10px;
   background-color: #F2F2F7;
   font-size: 1rem;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #111318;
   outline: none;
   border: none;
@@ -126,7 +126,7 @@ header p {
 
 .note-title {
   font-size: large;
-  font-family: "Inter", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #111827;
 }
 
@@ -222,7 +222,7 @@ header p {
   width: 100%;
   /* was 430px — overflowed on mobile */
   font-size: large;
-  font-family: "Inter", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #F8FAFC;
   border: 1px solid #dbdfe6;
   outline: none;
@@ -243,7 +243,7 @@ header p {
   border: 1px solid #dbdfe6;
   padding: 15px;
   font-size: large;
-  font-family: "Inter", sans-serif;
+  font-family: 'Roboto', sans-serif;
   border-radius: 10px;
   resize: none;
   outline: none;
@@ -257,7 +257,7 @@ header p {
 
 .task-name {
   font-size: large;
-  font-family: "Inter", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .modal-button {
@@ -275,7 +275,7 @@ header p {
   background-color: #EC5B13;
   color: #f0f2f4;
   font-size: 0.80rem;
-  font-family: "Inter", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   border-radius: 5px;
   border: none;
@@ -293,7 +293,7 @@ header p {
   background-color: #F8FAFC;
   color: #000000;
   font-size: 0.80rem;
-  font-family: "Inter", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   border-radius: 5px;
   border: none;
@@ -354,13 +354,13 @@ header p {
 
 .edit-delete-header {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 .edit-view-modal {
   color: #EC5B13;
   font-size: 1rem;
-  font-family: "Inter", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   border: none;
   background: none;
@@ -370,7 +370,7 @@ header p {
 .delete-view-modal {
   color: #EC5B13;
   font-size: 1rem;
-  font-family: "Inter", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   border: none;
   background: none;
@@ -400,7 +400,7 @@ header p {
   border: none;
   outline: none;
   resize: none;
-  font-family: 'Inter', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.85;
   color: #3a332a;
