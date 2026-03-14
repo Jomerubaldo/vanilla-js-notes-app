@@ -5,101 +5,139 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="#">
-  <link rel="stylesheet" type="text/css" href="/css/main.css" />
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet"> -->
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <title>Notes App</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <title>Notes</title>
 </head>
 
 <body>
-  <div class="app-wrapper">
-    <header>
-      <h1>Notes</h1>
-      <p><span class="count-task" id="countTask"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings">
-            <path
-              d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
-            <circle cx="12" cy="12" r="3" />
-          </svg></span></p>
-    </header>
-    <div class="container-input">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path
-          d="M 10 2 C 5.590603 2 2 5.5906063 2 10 C 2 14.409394 5.590603 18 10 18 C 11.929744 18 13.635779 17.22512 15.019531 16.082031 L 20.71875 21.78125 A 0.75130096 0.75130096 0 1 0 21.78125 20.71875 L 16.082031 15.019531 C 17.225119 13.635778 18 11.929742 18 10 C 18 5.5906063 14.409397 2 10 2 z M 10 3.5 C 13.598737 3.5 16.5 6.401265 16.5 10 C 16.5 13.598735 13.598737 16.5 10 16.5 C 6.4012627 16.5 3.5 13.598735 3.5 10 C 3.5 6.401265 6.4012627 3.5 10 3.5 z">
-        </path>
-      </svg>
-      <input class="search" type="search" placeholder="Search notes...">
-    </div>
-    <div class="container-note" id="containerNote">
-    </div>
 
-    <!-- circle blue add notes modal -->
-    <div class="container-add-button">
-      <button class="add-button" id="addButton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="11" fill="#2b6cee" />
-          <path d="M8 12h8" stroke-width="1" />
-          <path d="M12 8v8" stroke-width="1" />
-        </svg>
-      </button>
-    </div>
-  </div>
+  <!-- ═══════════════════════════════════════════════
+       APP SHELL  (sidebar + detail panel on desktop)
+  ════════════════════════════════════════════════ -->
+  <div class="app-shell">
 
-  <!-- add notes modal  -->
-  <div id="editModal" class="add-modal-container">
-    <div class="add-modal-content">
-      <div class="header-add-modal">
-        <h2>Add Note</h2>
-        <p id="headerCloseModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="lucide lucide-x-icon lucide-x">
-            <path d="M18 6 6 18" />
-            <path d="m6 6 12 12" />
-          </svg></p>
-      </div>
-      <div class="input-container">
-        <div class="task-name">Title</div>
-        <div>
-          <input name="task" id="modalInput" class="modal-input" type="text" placeholder="Note title..." />
+    <!-- ── LEFT PANEL / SIDEBAR ── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-inner">
+
+        <!-- Header -->
+        <header class="sidebar-header">
+          <div class="brand">
+            <h1 class="brand-title">Notes</h1>
+          </div>
+          <button class="icon-btn" id="addButton" title="New note" aria-label="New note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </header>
+
+        <!-- Search -->
+        <div class="search-wrap">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input class="search-input" type="search" placeholder="Search notes…" id="searchInput">
         </div>
-      </div><br />
-      <div class="input-container">
-        <div class="task-name">Note</div>
-        <textarea id="textArea" class="text-area" rows="13" cols="38"
-          placeholder="Start typing your thoughts..."></textarea>
-      </div>
-      <div class="modal-button">
-        <button id="saveAddNotes" class="save-edit">Save Note</button>
-        <button id="cancelEdit" class="cancel-edit">Cancel</button>
-      </div>
-    </div>
-  </div>
 
-  <!-- view notes modal -->
-  <div class="view-modal-container" id="viewModalContainer">
-    <div class="view-modal-content" id="viewModalContent">
-      <div class="header-viewModal">
-        <button class="close-view-modal" id="closeViewModal">
-          <i data-lucide="arrow-left"></i>
+        <!-- Notes count badge -->
+        <div class="notes-meta">
+          <span class="notes-label">All Notes</span>
+          <span class="notes-count" id="countTask">0</span>
+        </div>
+
+        <!-- Notes list -->
+        <div class="notes-list" id="containerNote"></div>
+
+      </div><!-- /sidebar-inner -->
+    </aside>
+
+    <!-- ── DETAIL / EMPTY STATE PANEL ── -->
+    <main class="detail-panel" id="detailPanel">
+
+      <!-- Empty state (shown when no note selected) -->
+      <div class="empty-state" id="emptyState">
+        <h2 class="empty-title">No note selected</h2>
+        <p class="empty-sub">Pick a note from the list or create a new one.</p>
+        <button class="btn-primary" id="emptyAddBtn">New Note</button>
+      </div>
+
+      <!-- Note viewer (shown when a note is selected) -->
+      <div class="note-viewer" id="noteViewer" style="display:none">
+        <div class="viewer-toolbar">
+          <!-- Back button only visible on mobile -->
+          <button class="icon-btn mobile-back" id="mobileBack" title="Back" aria-label="Back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5m0 0 7 7m-7-7 7-7" />
+            </svg>
+          </button>
+          <div class="viewer-actions">
+            <button class="btn-ghost" id="editViewModal">Edit</button>
+            <button class="btn-danger" id="deleteViewModal">Delete</button>
+          </div>
+        </div>
+        <div class="viewer-body">
+          <h2 class="viewer-title" id="viewNoteTitle"></h2>
+          <p class="viewer-date" id="viewNoteDate"></p>
+          <textarea class="viewer-content" id="viewNoteParagraph" readonly></textarea>
+        </div>
+      </div>
+
+    </main>
+
+  </div><!-- /app-shell -->
+
+  <!-- ── FAB (mobile only) ── -->
+  <button class="fab" id="fabBtn" title="New note" aria-label="New note">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white"
+      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  </button>
+
+  <!-- ═══════════════════════════════════════════════
+       ADD / EDIT MODAL
+  ════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="editModal" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-heading" id="modalHeading">New Note</h2>
+        <button class="icon-btn" id="headerCloseModal" aria-label="Close modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
         </button>
-        <div class="edit-delete-header">
-          <button id="editViewModal" class="edit-view-modal">Edit</button>
-          <button class="delete-view-modal">Delete</button>
-        </div>
       </div>
-      <h3 class="view-title" id="viewNoteTitle"></h3>
-      <textarea class="view-paragraph" id="viewNoteParagraph" readonly></textarea>
+
+      <div class="form-group">
+        <label class="form-label" for="modalInput">Title</label>
+        <input id="modalInput" class="form-input" type="text" placeholder="Note title…" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="textArea">Note</label>
+        <textarea id="textArea" class="form-textarea" rows="10" placeholder="Start typing your thoughts…"></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button id="cancelEdit" class="btn-ghost">Cancel</button>
+        <button id="saveAddNotes" class="btn-primary">Save Note</button>
+      </div>
     </div>
   </div>
 
+  <script src="/js/main.js"></script>
 </body>
-<script src="/js/main.js"></script>
 
 </html>

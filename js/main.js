@@ -1,157 +1,279 @@
-// DOM SECTION
+/* ═══════════════════════════════════════════════════
+   NOTES APP  —  main.js
+   Original logic merged into the responsive two-panel layout.
+════════════════════════════════════════════════════ */
+
+// ── DOM ──────────────────────────────────────────────────────────
 const countTask = document.querySelector('#countTask');
 const noteTitleValue = document.querySelector('#modalInput');
 const noteTextAreaValue = document.querySelector('#textArea');
 const addNoteBtn = document.querySelector('#addButton');
+const fabBtn = document.querySelector('#fabBtn');
+const emptyAddBtn = document.querySelector('#emptyAddBtn');
 const editModal = document.querySelector('#editModal');
 const cancelEdit = document.querySelector('#cancelEdit');
 const saveAddNotes = document.querySelector('#saveAddNotes');
-const containerNote = document.querySelector('#containerNote');
-const closeViewModal = document.querySelector('#closeViewModal');
 const headerCloseModal = document.querySelector('#headerCloseModal');
+const containerNote = document.querySelector('#containerNote');
+const modalHeading = document.querySelector('#modalHeading');
 
-// STATE (DATA)
+const appShell = document.querySelector('.app-shell');
+const emptyState = document.querySelector('#emptyState');
+const noteViewer = document.querySelector('#noteViewer');
+const viewNoteTitle = document.querySelector('#viewNoteTitle');
+const viewNoteDate = document.querySelector('#viewNoteDate');
+const viewNoteParagraph = document.querySelector('#viewNoteParagraph');
+const editViewModal = document.querySelector('#editViewModal');
+const deleteViewModal = document.querySelector('#deleteViewModal');
+const mobileBack = document.querySelector('#mobileBack');
+const searchInput = document.querySelector('#searchInput');
+
+// ── STATE ────────────────────────────────────────────────────────
 let notes = JSON.parse(localStorage.getItem('notes')) || [];
 let currentNoteIndex = null;
+let isEditing = false;
+let searchQuery = '';
 
-// STORAGE
+// ── STORAGE ──────────────────────────────────────────────────────
 function saveNotes() {
   localStorage.setItem('notes', JSON.stringify(notes));
 }
 
-let isEditing = false;
+// ── HELPERS ──────────────────────────────────────────────────────
+function formatDate(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
 
-const editViewModal = document.querySelector('#editViewModal');
+function escHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
 
-// UI FUNCTIONS
-function createNote(title, textArea, index) {
-  currentNoteIndex = index;
+function filteredNotes() {
+  if (!searchQuery.trim()) return notes.map((n, i) => ({ ...n, _idx: i }));
+  const q = searchQuery.toLowerCase();
+  return notes
+    .map((n, i) => ({ ...n, _idx: i }))
+    .filter(
+      (n) =>
+        n.text.toLowerCase().includes(q) || n.content.toLowerCase().includes(q)
+    );
+}
 
-  const contentNote = document.createElement('div');
-  contentNote.className = 'content-note';
+// ── RENDER LIST ──────────────────────────────────────────────────
+function renderNotes() {
+  const list = filteredNotes();
+  countTask.textContent = notes.length;
 
-  contentNote.addEventListener('click', function () {
-    const viewModalContainer = document.querySelector('#viewModalContainer');
-    const viewTitle = document.querySelector('#viewNoteTitle');
-    const viewParagraph = document.querySelector('#viewNoteParagraph');
+  if (list.length === 0) {
+    containerNote.innerHTML = `
+      <div class="list-empty">
+        <strong>${searchQuery ? 'No results found' : 'No notes yet'}</strong>
+        ${searchQuery ? 'Try a different search term.' : 'Tap + to create your first note.'}
+      </div>`;
+    return;
+  }
 
-    viewTitle.textContent = title;
-    viewParagraph.value = textArea;
+  containerNote.innerHTML = list
+    .map(
+      (note) => `
+    <div class="note-card ${note._idx === currentNoteIndex ? 'active' : ''}"
+         data-index="${note._idx}"
+         role="button"
+         tabindex="0"
+         aria-label="Open note: ${escHtml(note.text)}">
+      <div class="note-card-title">${escHtml(note.text) || 'Untitled'}</div>
+      <div class="note-card-snippet">${escHtml(note.content.slice(0, 80)) || '—'}</div>
+      <div class="note-card-date">${formatDate(note.createdAt)}</div>
+    </div>`
+    )
+    .join('');
 
-    viewModalContainer.style.display = 'flex';
-    document.body.classList.add('modal-open');
-
-    editViewModal.addEventListener('click', () => {
-      if (!isEditing) {
-        isEditing = true;
-        editViewModal.textContent = 'Save';
-        viewParagraph.removeAttribute('readonly');
-        viewParagraph.focus();
-      } else {
-        notes[currentNoteIndex].content = viewParagraph.value;
-        saveEditNote();
-        isEditing = false;
-        editViewModal.textContent = 'Edit';
-        viewParagraph.setAttribute('readonly', true);
-      }
+  containerNote.querySelectorAll('.note-card').forEach((card) => {
+    card.addEventListener('click', () => openNote(Number(card.dataset.index)));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ')
+        openNote(Number(card.dataset.index));
     });
+  });
+}
 
-    function saveEditNote() {
-      textArea = viewParagraph.value;
+// ── OPEN / VIEW A NOTE ───────────────────────────────────────────
+function openNote(index) {
+  const note = notes[index];
+  if (!note) return;
+
+  if (isEditing) exitEditMode();
+
+  currentNoteIndex = index;
+  renderNotes();
+
+  viewNoteTitle.textContent = note.text || 'Untitled';
+  viewNoteDate.textContent = note.createdAt ? formatDate(note.createdAt) : '';
+  viewNoteParagraph.value = note.content;
+
+  emptyState.style.display = 'none';
+  noteViewer.style.display = 'flex';
+  appShell.classList.add('detail-open');
+}
+
+function closeDetail() {
+  if (isEditing) exitEditMode();
+  currentNoteIndex = null;
+  renderNotes();
+  emptyState.style.display = 'flex';
+  noteViewer.style.display = 'none';
+  appShell.classList.remove('detail-open');
+}
+
+// ── IN-VIEWER EDIT MODE ──────────────────────────────────────────
+function enterEditMode() {
+  isEditing = true;
+  editViewModal.textContent = 'Save';
+  viewNoteParagraph.removeAttribute('readonly');
+  viewNoteParagraph.classList.add('editing');
+  viewNoteParagraph.focus();
+}
+
+function exitEditMode() {
+  isEditing = false;
+  editViewModal.textContent = 'Edit';
+  viewNoteParagraph.setAttribute('readonly', true);
+  viewNoteParagraph.classList.remove('editing');
+}
+
+function saveViewerEdit() {
+  if (currentNoteIndex === null) return;
+  notes[currentNoteIndex].content = viewNoteParagraph.value;
+  saveNotes();
+  renderNotes();
+}
+
+editViewModal.addEventListener('click', () => {
+  if (!isEditing) {
+    enterEditMode();
+  } else {
+    saveViewerEdit();
+    exitEditMode();
+  }
+});
+
+// ── DELETE NOTE ──────────────────────────────────────────────────
+deleteViewModal.addEventListener('click', () => {
+  if (currentNoteIndex === null) return;
+  const noteTitle = notes[currentNoteIndex].text || 'this note';
+
+  Swal.fire({
+    title: `Delete "${noteTitle}"?`,
+    text: 'This action cannot be undone.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#DC2626',
+    cancelButtonColor: '#6B7280',
+    confirmButtonText: 'Delete',
+    cancelButtonText: 'Cancel',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      notes.splice(currentNoteIndex, 1);
       saveNotes();
+      closeDetail();
     }
   });
+});
 
-  const noteTitleElement = document.createElement('h3');
-  noteTitleElement.className = 'note-title';
-  noteTitleElement.textContent = title;
-
-  const noteTextAreaElement = document.createElement('p');
-  noteTextAreaElement.className = 'note-text-area';
-  noteTextAreaElement.textContent = textArea;
-
-  const horizontalElement = document.createElement('hr');
-  horizontalElement.className = 'horizontal-line';
-
-  contentNote.appendChild(noteTitleElement);
-  contentNote.appendChild(noteTextAreaElement);
-  contentNote.appendChild(horizontalElement);
-
-  containerNote.appendChild(contentNote);
-}
-
-// render saved notes
-function renderNotes() {
-  notes.forEach((note, index) => {
-    createNote(note.text, note.content, index);
-  });
-}
-
-// MODAL FUNCTIONS
+// ── ADD NOTE MODAL ───────────────────────────────────────────────
 function openModal() {
-  editModal.style.display = 'flex';
-  document.body.classList.add('modal-open');
+  modalHeading.textContent = 'New Note';
+  noteTitleValue.value = '';
+  noteTextAreaValue.value = '';
+  editModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => noteTitleValue.focus(), 80);
 }
 
 function closeModal() {
-  document.body.classList.remove('modal-open');
-  editModal.style.display = 'none';
+  editModal.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
-function closeModalView() {
-  document.body.classList.remove('modal-open');
-  viewModalContainer.style.display = 'none';
-}
-
-// LOGIC
 function addNote() {
-  const title = noteTitleValue.value;
-  const textArea = noteTextAreaValue.value;
+  const title = noteTitleValue.value.trim();
+  const content = noteTextAreaValue.value.trim();
 
-  if (!title.trim() || !textArea) {
+  if (!title || !content) {
     let message = '';
-
-    if (!title.trim() && !textArea) {
+    if (!title && !content) {
       message = 'Please fill both Title and Note fields';
-    } else if (!title.trim()) {
+    } else if (!title) {
       message = 'Please fill Title';
     } else {
       message = 'Please fill Note';
     }
-
-    Swal.fire({
-      icon: 'warning',
-      title: 'Oops...',
-      text: message,
-    });
-
+    Swal.fire({ icon: 'warning', title: 'Oops…', text: message });
     return;
   }
 
   const newNote = {
     text: title,
-    content: textArea,
+    content: content,
+    createdAt: new Date().toISOString(),
   };
 
   notes.push(newNote);
-
   saveNotes();
-
-  createNote(title, textArea, notes.length - 1);
 
   noteTitleValue.value = '';
   noteTextAreaValue.value = '';
-
   closeModal();
-}
-lucide.createIcons();
 
-// EVENTS
+  openNote(notes.length - 1);
+}
+
+// ── SEARCH ───────────────────────────────────────────────────────
+searchInput.addEventListener('input', (e) => {
+  searchQuery = e.target.value;
+  renderNotes();
+});
+
+// ── EVENTS ───────────────────────────────────────────────────────
 addNoteBtn.addEventListener('click', openModal);
+fabBtn.addEventListener('click', openModal);
+emptyAddBtn.addEventListener('click', openModal);
+
 saveAddNotes.addEventListener('click', addNote);
 cancelEdit.addEventListener('click', closeModal);
-closeViewModal.addEventListener('click', closeModalView);
 headerCloseModal.addEventListener('click', closeModal);
 
-// INIT APP
+editModal.addEventListener('click', (e) => {
+  if (e.target === editModal) closeModal();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (editModal.classList.contains('open')) closeModal();
+    else if (isEditing) exitEditMode();
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    if (editModal.classList.contains('open')) addNote();
+    else if (isEditing) {
+      saveViewerEdit();
+      exitEditMode();
+    }
+  }
+});
+
+mobileBack.addEventListener('click', closeDetail);
+
+// Init lucide icons
+lucide.createIcons();
+
+// ── INIT ─────────────────────────────────────────────────────────
 renderNotes();
